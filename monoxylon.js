@@ -32,10 +32,10 @@ Monoxylon.prototype._transform = function(chunk, encoding, callback) {
                     type: "Feature",
                     geometry: {
                         type: "Point",
-                        coordinates: [subpieces[0], subpieces[1]]
+                        coordinates: [parseFloat(subpieces[0]), parseFloat(subpieces[1])]
                     },
                     properties: {}
-                }));    
+                }) + '\n');    
             }
         }
     });
