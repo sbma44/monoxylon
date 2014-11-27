@@ -9,6 +9,8 @@ function Monoxylon(options) {
 
     Transform.call(this, options);
     this.buf = '';
+    this.foundHeaders = false;
+    this.headers = [];
 }
 
 Monoxylon.prototype._transform = function(chunk, encoding, callback) {
@@ -20,15 +22,21 @@ Monoxylon.prototype._transform = function(chunk, encoding, callback) {
             callback();
         }
         else {  
-            var subpieces = piece.split(',');
-            monox.push(JSON.stringify({
-                type: "Feature",
-                geometry: {
-                    type: "Point",
-                    coordinates: [subpieces[0], subpieces[1]]
-                },
-                // properties: {}
-            }));
+            var subpieces = piece.split(',');            
+            if (!monox.foundHeaders) {
+                monox.foundHeaders = true;
+                monox.headers = subpieces;
+            }
+            else {
+                monox.push(JSON.stringify({
+                    type: "Feature",
+                    geometry: {
+                        type: "Point",
+                        coordinates: [subpieces[0], subpieces[1]]
+                    },
+                    // properties: {}
+                }));    
+            }
         }
     });
 }
