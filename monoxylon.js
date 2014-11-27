@@ -20,7 +20,7 @@ Monoxylon.prototype._transform = function(chunk, encoding, callback) {
             callback();
         }
         else {  
-            var subpieces = pieces.split(',');
+            var subpieces = piece.split(',');
             monox.push(JSON.stringify({
                 type: "Feature",
                 geometry: {
