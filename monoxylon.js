@@ -34,7 +34,7 @@ Monoxylon.prototype._transform = function(chunk, encoding, callback) {
                         type: "Point",
                         coordinates: [subpieces[0], subpieces[1]]
                     },
-                    // properties: {}
+                    properties: {}
                 }));    
             }
         }
